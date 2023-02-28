@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      paddingBottom: 20
+      marginBottom: 20,
     },
     input: {
       height: 40,
-      width: 150,
+      width: "40%",
       color: "black",
       backgroundColor: "grey",
     },
