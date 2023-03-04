@@ -3,7 +3,7 @@ import React from 'react'
 
 const Input = ({style, ...otherPros}) => {
   return (
-    <TextInput style={[styles.input, style]} {...otherPros}/>
+    <TextInput style={[styles.input, style]} {...otherPros} keyboardType='numeric' />
   )
 }
 
