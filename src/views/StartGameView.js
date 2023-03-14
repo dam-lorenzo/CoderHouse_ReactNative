@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Button, TouchableWithoutFeedback, Keyboard } from 'react-native'
-import { useState } from 'react'
+import { StyleSheet, Text, View, Button, TouchableWithoutFeedback, Keyboard, Dimensions } from 'react-native'
+import { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import COLORS from '../constants/Colors'
 import Input from '../components/Input'
