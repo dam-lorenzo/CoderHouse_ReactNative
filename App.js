@@ -1,11 +1,10 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Header from './src/components/Header';
 import COLORS from './src/constants/Colors';
-import GameScreen from './src/views/GameScreen';
-import StartGameScreen from './src/views/StartGameView';
+import ShopNavigator from './src/navigators/ShopNavigator';
 
 const App = () => {
     
@@ -14,17 +13,17 @@ const App = () => {
         'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
     })
 
+    useEffect( () => {
+        if (loadedFonts) {
+            SplashScreen.hideAsync()
+        }
+    })
+
     const onLayoutRootView = useCallback(async () => {
         if (loadedFonts) {
             await SplashScreen.hideAsync()
         }
     }, [loadedFonts])
-
-    const [ userNumber, setUserNumber ] = useState()
-
-    const startGameHandler = (selectedNumber) => {
-        setUserNumber(selectedNumber)
-    }
 
     if (!loadedFonts) {
         return null
@@ -32,12 +31,8 @@ const App = () => {
 
     return (
         <View style={styles.appView} onLayout={onLayoutRootView}>
-            <Header title="Adivina el numero" />
-            {
-                userNumber
-                    ? <GameScreen />
-                    : <StartGameScreen startGameHandler={startGameHandler}/>
-            }
+            <Header title="Shop" />
+            <ShopNavigator />
         </View>
     );
 }
