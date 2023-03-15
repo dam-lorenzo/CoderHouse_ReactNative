@@ -4,9 +4,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Header from './src/components/Header';
 import COLORS from './src/constants/Colors';
-import GameScreen from './src/views/GameScreen';
-import StartGameView from './src/views/StartGameView';
-import GameOverScreen from './src/views/GameOverScreen';
+import ShopNavigator from './src/navigators/ShopNavigator';
 
 const App = () => {
     
@@ -27,37 +25,14 @@ const App = () => {
         }
     }, [loadedFonts])
 
-    const [ userNumber, setUserNumber ] = useState()
-    const [ guessRounds, setGuessRounds ] = useState(0)
-
-    const startGameHandler = (selectedNumber) => {
-        setUserNumber(selectedNumber)
-        setGuessRounds(0)
-    }
-
-    const GameOverHandler = (rounds) => {
-        setGuessRounds(rounds)
-    }
-
-    const reStartHandler = () => {
-        setGuessRounds(0);
-        setUserNumber(null);
-      };
-
     if (!loadedFonts) {
         return null
     }
 
     return (
         <View style={styles.appView} onLayout={onLayoutRootView}>
-            <Header title="Adivina el numero" />
-            {
-                !userNumber
-                    ? <StartGameView startGameHandler={startGameHandler}/>
-                    : userNumber && guessRounds <= 0
-                        ? <GameScreen userOption={userNumber} onGameOver={GameOverHandler}/>
-                        : <GameOverScreen rounds={guessRounds} choise={userNumber} onRestart={reStartHandler}/>
-            }
+            <Header title="Shop" />
+            <ShopNavigator />
         </View>
     );
 }
