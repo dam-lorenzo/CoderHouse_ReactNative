@@ -18,9 +18,12 @@ const CategoryPokemonsScreen = ({ route, navigation }) => {
 
     const renderPokemonItem = ({ item }) => (<PokemonItem item={item} onSelected={handleOnSelected} />)
 
+    
+    const dataList = pokemons ? pokemons.pokemon_species : []
+
     return (
         <FlatList 
-            data={pokemons.pokemon_species}
+            data={dataList}
             keyExtractor={(item) => item.id}
             renderItem={renderPokemonItem}
         />

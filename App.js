@@ -1,8 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import {useFonts, OpenSans_400Regular, OpenSans_700Bold} from '@expo-google-fonts/open-sans';
 
-import PokedexNavigator from './src/navigators/PokedexNavigator';
+import MainNavigation from './src/navigators/MainNavigation';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -13,7 +13,7 @@ export default function App() {
         OpenSans_700Bold
     });
 
-    React.useEffect(() =>{
+    useEffect(() =>{
         if(fontsLoaded){
         SplashScreen.hideAsync();
         }
@@ -24,6 +24,6 @@ export default function App() {
     }
 
     return (
-        <PokedexNavigator />
+        <MainNavigation />
     );
 }

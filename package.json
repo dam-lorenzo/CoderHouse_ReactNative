@@ -19,7 +19,8 @@
     "react-native": "0.70.5",
     "expo-font": "~11.0.1",
     "expo-splash-screen": "~0.17.5",
-    "@expo-google-fonts/open-sans": "^0.2.3"
+    "@expo-google-fonts/open-sans": "^0.2.3",
+    "@react-navigation/bottom-tabs": "^6.5.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
