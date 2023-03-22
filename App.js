@@ -1,47 +1,29 @@
-import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { useFonts } from 'expo-font';
+import React from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-import Header from './src/components/Header';
-import COLORS from './src/constants/Colors';
-import ShopNavigator from './src/navigators/ShopNavigator';
+import {useFonts, OpenSans_400Regular, OpenSans_700Bold} from '@expo-google-fonts/open-sans';
 
-const App = () => {
-    
-    const [ loadedFonts ] = useFonts({
-        'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-        'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-    })
+import PokedexNavigator from './src/navigators/PokedexNavigator';
 
-    useEffect( () => {
-        if (loadedFonts) {
-            SplashScreen.hideAsync()
+SplashScreen.preventAutoHideAsync();
+
+export default function App() {
+
+    const [fontsLoaded] = useFonts({
+        OpenSans_400Regular,
+        OpenSans_700Bold
+    });
+
+    React.useEffect(() =>{
+        if(fontsLoaded){
+        SplashScreen.hideAsync();
         }
-    })
+    }, [fontsLoaded])
 
-    const onLayoutRootView = useCallback(async () => {
-        if (loadedFonts) {
-            await SplashScreen.hideAsync()
-        }
-    }, [loadedFonts])
-
-    if (!loadedFonts) {
-        return null
+    if(!fontsLoaded){
+        return null;
     }
 
     return (
-        <View style={styles.appView} onLayout={onLayoutRootView}>
-            <Header title="Shop" />
-            <ShopNavigator />
-        </View>
+        <PokedexNavigator />
     );
 }
-
-const styles = StyleSheet.create({
-    appView: {
-        flex: 1,
-        backgroundColor: COLORS.appBrackground,
-    },
-});
-
-export default App
